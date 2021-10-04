@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <%- include('components/head'); -%>
+  <body class="app">
+    <div class="login-card">
+      <h1><%= title %></h1>
+      <form
+        autocomplete="off"
+        action="<%= authServerUrl %>/users"
+        method="post"
+      >
+        <label>Username</label>
+        <input required type="text" name="username" placeholder="username" />
+        <label>Password</label>
+        <input
+          required
+          type="password"
+          name="password"
+          placeholder="and password"
+        />
+
+        <button type="submit" class="login login-submit">Register</button>
+      </form>
+    </div>
+  </body>
+</html>

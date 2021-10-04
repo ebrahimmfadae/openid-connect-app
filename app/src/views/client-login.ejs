@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <%- include('components/head'); -%>
+  <body class="app">
+    <div class="login-card">
+      <h1><%= title %></h1>
+      <form
+        autocomplete="off"
+        action="<%= authServerUrl %>/token"
+        method="post"
+      >
+        <label>Client Id</label>
+        <input required name="client_id" value="<%= clientId %>" />
+        <label>Client Secret</label>
+        <input required name="client_secret" value="<%= clientSecret %>" />
+        <label>Grant Type</label>
+        <input required name="grant_type" value="client_credentials" />
+        <label>Optional Scope</label>
+        <input name="scope" value="openid" />
+
+        <button type="submit" class="login login-submit">Issue Token</button>
+      </form>
+    </div>
+  </body>
+</html>

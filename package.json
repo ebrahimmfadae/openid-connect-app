@@ -1,0 +1,42 @@
+{
+  "name": "oidc",
+  "version": "1.0.0",
+  "description": "",
+  "private": "true",
+  "type": "commonjs",
+  "scripts": {
+    "start/oidc": "ts-node oidc/src",
+    "start/app": "ts-node app/src",
+    "start/api": "ts-node api/src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "dotenv": "^10.0.0",
+    "koa": "^2.13.1",
+    "koa-body": "^4.2.0",
+    "koa-ejs": "^4.3.0",
+    "koa-mount": "^4.0.0",
+    "koa-router": "^10.0.0",
+    "koa-static": "^5.0.0",
+    "mongoose": "^6.0.5",
+    "node-fetch": "^2.6.1",
+    "oidc-provider": "^7.6.0",
+    "ts-node": "^10.2.0",
+    "typescript": "^4.3.5"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.13.4",
+    "@types/koa-ejs": "^4.2.4",
+    "@types/koa-mount": "^4.0.0",
+    "@types/koa-router": "^7.4.4",
+    "@types/koa-static": "^4.0.2",
+    "@types/koa__cors": "^3.0.3",
+    "@types/node": "^16.4.14",
+    "@types/node-fetch": "^2.5.12",
+    "@types/oidc-provider": "^7.6.0"
+  }
+}
