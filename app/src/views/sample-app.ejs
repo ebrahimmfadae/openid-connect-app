@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <%- include('components/head'); -%>
+  <body class="app">
+    <div class="login-card">
+      <h1><%= title %></h1>
+      <form action="<%= authServerUrl %>/auth" method="post">
+        <label>Client Id</label>
+        <input required name="client_id" value="<%= clientId %>" />
+        <label>Resource</label>
+        <input name="resource" value="<%= apiUrl %>/pi" />
+        <label>Response Type</label>
+        <input required name="response_type" value="code" />
+        <label>Redirect URI</label>
+        <input required name="redirect_uri" value="<%= appUrl %>/cb" />
+        <label>Scope</label>
+        <input required name="scope" value="openid offline_access api:read" />
+        <label>Prompt</label>
+        <input required name="prompt" value="consent" />
+        <label>Challenge Code</label>
+        <input id="challengeCodeInput" required name="code_challenge" />
+        <label>Code Challenge Method</label>
+        <input required name="code_challenge_method" value="S256" />
+
+        <button type="submit" class="login login-submit">Grant Access</button>
+      </form>
+    </div>
+  </body>
+  <script>
+    const enc = new TextEncoder();
+    const dec = new TextDecoder("utf-8");
+    function randomString(length) {
+      let result = "";
+      const characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      const charactersLength = characters.length;
+      for (let i = 0; i < length; i++) {
+        result += characters.charAt(
+          Math.floor(Math.random() * charactersLength)
+        );
+      }
+      return result;
+    }
+    async function sha256(str) {
+      return new Uint8Array(
+        await crypto.subtle.digest("SHA-256", enc.encode(str))
+      );
+    }
+    function toHex(uint8Array) {
+      const hashArray = Array.from(uint8Array);
+      const hashHex = hashArray
+        .map((b) => b.toString(16).padStart(2, "0"))
+        .join("");
+      return hashHex;
+    }
+    function hexToBase64(str) {
+      return btoa(
+        String.fromCharCode.apply(
+          null,
+          str
+            .replace(/\r|\n/g, "")
+            .replace(/([\da-fA-F]{2}) ?/g, "0x$1 ")
+            .replace(/ +$/, "")
+            .split(" ")
+        )
+      );
+    }
+    (async function () {
+      const codeVerifier = randomString(64);
+      window.sessionStorage.setItem("codeVerifier", codeVerifier);
+      const challengeCode = hexToBase64(toHex(await sha256(codeVerifier)));
+      document.getElementById("challengeCodeInput").value = challengeCode
+        .replace(/[\+]/g, "-")
+        .replace(/[\/]/g, "_")
+        .replace(/[=]/g, "");
+    })();
+  </script>
+</html>

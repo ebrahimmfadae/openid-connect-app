@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <%- include('components/head'); -%>
+  <body class="app">
+    <div class="login-card">
+      <h1><%= title %></h1>
+      <form autocomplete="off">
+        <label>Token</label>
+        <input id="token" required name="token" placeholder="Token" />
+        <p id="pi" style="margin-top: 0">Value: -</p>
+
+        <button type="button" class="login login-submit" onclick="onClick()">
+          Fetch
+        </button>
+      </form>
+    </div>
+  </body>
+  <script>
+    async function onClick() {
+      try {
+        const response = await fetch("<%= apiUrl %>/pi", {
+          headers: {
+            ["Authorization"]: `Bearer ${
+              document.getElementById("token").value
+            }`,
+          },
+        });
+        if (response.status === 401) {
+          return alert("You are not authorized to access PI.");
+        } else if (response.status !== 200) {
+          return alert(" Failed to fetch PI.");
+        }
+        const pi = await response.text();
+        document.getElementById("pi").innerText = `Value: ${pi}`;
+      } catch (error) {
+        alert("Error encountered.");
+      }
+    }
+  </script>
+</html>

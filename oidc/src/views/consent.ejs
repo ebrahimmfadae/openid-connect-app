@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <%- include('components/head'); -%>
+  <body>
+    <div class="login-card">
+      <h1><%= title %></h1>
+      <form
+        autocomplete="off"
+        action="/interaction/<%= uid %>/confirm"
+        method="post"
+      >
+        <p>
+          Do you allow <strong><%= clientId %></strong> to access your account
+          information? (<strong><%= scope %></strong>)
+        </p>
+        <button type="submit" class="login login-submit">Authorize</button>
+      </form>
+    </div>
+    <%- include('components/footer'); -%>
+  </body>
+</html>

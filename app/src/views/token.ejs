@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <%- include('components/head'); -%>
+  <body class="app">
+    <div class="login-card">
+      <h1><%= title %></h1>
+      <form
+        autocomplete="off"
+        action="<%= authServerUrl %>/token"
+        method="post"
+      >
+        <label>Client Id</label>
+        <input required name="client_id" value="<%= clientId %>" />
+        <label>Client Secret</label>
+        <input required name="client_secret" value="<%= clientSecret %>" />
+        <label>Grant Type</label>
+        <input required name="grant_type" value="authorization_code" />
+        <label>Code</label>
+        <input required name="code" value="<%= code %>" />
+        <label>Redirect URI</label>
+        <input required name="redirect_uri" value="<%= appUrl %>/cb" />
+        <label>Scope</label>
+        <input required name="scope" value="openid offline_access api:read" />
+        <label>Code Verifier</label>
+        <input id="codeVerifierInput" required name="code_verifier" />
+        <label>Code Challenge Method</label>
+        <input required name="code_challenge_method" value="S256" />
+
+        <button type="submit" class="login login-submit">Issue Token</button>
+      </form>
+    </div>
+  </body>
+  <script>
+    (async function () {
+      document.getElementById("codeVerifierInput").value =
+        window.sessionStorage.getItem("codeVerifier");
+    })();
+  </script>
+</html>
