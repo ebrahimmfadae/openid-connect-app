@@ -1,7 +1,7 @@
 import { Middleware } from "koa";
 import { Provider } from "oidc-provider";
 
-export const authenticate: (oidc: Provider) => Middleware =
+export const onlyClient: (oidc: Provider) => Middleware =
   (oidc) => async (ctx, next) => {
     const clientCredentials = await oidc.ClientCredentials.find(
       ctx.request.headers.authorization?.replace(/^Bearer /, "") ?? ""
