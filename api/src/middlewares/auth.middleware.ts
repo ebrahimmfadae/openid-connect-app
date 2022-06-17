@@ -21,6 +21,7 @@ export const authenticate: Middleware = async (ctx, next) => {
   if (response.status !== 200) ctx.throw(401);
   const json = await response.json();
   const { active, aud } = json;
+  // Resource URI and audience (aud) must be equal
   if (active && aud.trim() === ctx.request.href.split("?")[0]) {
     ctx.state.session = json;
     await next();
