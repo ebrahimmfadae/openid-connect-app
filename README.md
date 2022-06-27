@@ -1,6 +1,23 @@
-# openid-connect-app
+# OpenID Connect App
 
-Sample project for implementing **OIDC** server with a web application and an API service.
+<p>
+    <a href="https://github.com/ebrahimmfadae/openid-connect-app/blob/main/LICENSE" target="_blank">
+        <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="Released under the MIT license." />
+    </a>
+    <a>
+        <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome!" />
+    </a>
+    <a href="https://github.com/ebrahimmfadae/openid-connect-app/last-commit" target="_blank">
+        <img src="https://img.shields.io/github/last-commit/ebrahimmfadae/openid-connect-app? style=flat-square" alt="Last commit">
+    </a>
+    <a href="https://github.com/ebrahimmfadae/openid-connect-app/issues" target="_blank">
+        <img src="https://img.shields.io/github/issues/ebrahimmfadae/openid-connect-app? style=flat-square"/>
+    </a>
+</p>
+
+<p>
+  Sample project for implementing <b>OIDC</b> server with a web application and an API service.
+</p>
 
 ## Article Reference
 
