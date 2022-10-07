@@ -5,7 +5,7 @@ import instance from "oidc-provider/lib/helpers/weak_cache";
 import dpopValidate from "oidc-provider/lib/helpers/validate_dpop";
 import resolveResource from "oidc-provider/lib/helpers/resolve_resource";
 import { Middleware } from "koa";
-import * as accountService from "../../services/account.service";
+import * as accountService from "../../services/account-persist.service";
 
 export const gty = "password";
 

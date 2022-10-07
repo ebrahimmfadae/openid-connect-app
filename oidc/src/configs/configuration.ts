@@ -1,6 +1,6 @@
 import { Configuration } from "oidc-provider";
 import { MongoDbAdapter } from "../adapters/mongodb";
-import * as accountService from "../services/account.service";
+import * as accountService from "../services/account-persist.service";
 
 export const configuration: Configuration = {
   adapter: MongoDbAdapter,

@@ -1,6 +1,6 @@
 import { Middleware } from "koa";
 import { Provider } from "oidc-provider";
-import * as accountService from "../services/account.service";
+import * as accountService from "../services/account-persist.service";
 
 function debug(obj: any) {
   return Object.entries(obj)
@@ -56,9 +56,9 @@ export default (oidc: Provider): { [key: string]: Middleware } => ({
       const grant = interactionDetails.grantId
         ? await oidc.Grant.find(interactionDetails.grantId)
         : new oidc.Grant({
-            accountId,
-            clientId: params.client_id as string,
-          });
+          accountId,
+          clientId: params.client_id as string,
+        });
 
       if (grant) {
         if (details.missingOIDCScope) {
