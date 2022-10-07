@@ -1,0 +1,37 @@
+services:
+  oidc:
+    image: node:16-alpine
+    command: yarn start:oidc
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+  api:
+    image: node:16-alpine
+    command: yarn start:api
+    working_dir: /app
+    ports:
+      - "3006:3006"
+    volumes:
+      - .:/app
+  app:
+    image: node:16-alpine
+    command: yarn start:app
+    working_dir: /app
+    ports:
+      - "3005:3005"
+    volumes:
+      - .:/app
+  mongo:
+    image: mongo:4.4.7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: test $$(mongo --quiet --eval "db.serverStatus().ok") -eq 1
+      interval: 10s
+      start_period: 30s
+volumes:
+  mongo-data: {}
