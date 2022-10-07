@@ -47,17 +47,17 @@ $ docker-compose version
 Docker Compose version v2.11.2
 ```
 
-## Run
+## Run & Stop
 
-Step one, install the dependencies
+Install dependencies
 
 ```
 $ yarn install
 ```
 
-We can move the `yarn install` step to the container, but installing the dependencies inside the container when we have no caching bothers me! Especially in the development phase.
+_Note: We can move the `yarn install` step to the container, but installing the dependencies inside the container when we have no caching bothers me! Especially in the development phase._
 
-Step two, start the containers.
+Run containers
 
 ```
 $ yarn docker-compose:up
@@ -65,7 +65,7 @@ $ yarn docker-compose:up
 
 You can see the front end by navigating to [http://localhost:3005](http://localhost:3005) with your browser.
 
-To shut down the containers, run this command.
+Stop containers
 
 ```
 $ yarn docker-compose:down
