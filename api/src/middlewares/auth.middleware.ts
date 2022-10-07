@@ -10,7 +10,7 @@ export const authenticate: Middleware = async (ctx, next) => {
   );
   body.append("client_id", process.env.CLIENT_ID as string);
   body.append("client_secret", process.env.CLIENT_SECRET as string);
-  const url = `${process.env.AUTH_ISSUER}/token/introspection`;
+  const url = `${process.env.OIDC_ISSUER}/token/introspection`;
   const response = await fetch(url, {
     method: "POST",
     headers: {

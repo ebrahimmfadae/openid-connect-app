@@ -2,7 +2,6 @@ import koaBody from "koa-body";
 import Router from "koa-router";
 import { Provider } from "oidc-provider";
 import authController from "../controllers/auth.controller";
-import { onlyClient } from "../middlewares/auth.middleware";
 import { noCache } from "../middlewares/no-cache.middleware";
 
 const bodyParser = koaBody();
