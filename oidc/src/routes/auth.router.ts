@@ -13,7 +13,7 @@ export default (oidc: Provider) => {
   const { abortInteraction, confirmInteraction, interaction, login, register } =
     authController(oidc);
 
-  router.post("/users", bodyParser, onlyClient(oidc), register);
+  router.post("/users", bodyParser, register);
 
   router.post("/interaction/:uid/login", noCache, bodyParser, login);
   router.post("/interaction/:uid/confirm", noCache, confirmInteraction);
