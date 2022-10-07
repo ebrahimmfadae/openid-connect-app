@@ -54,4 +54,4 @@ BaseModelSchema.index(
   }
 );
 
-export const BaseModel = mongoose.model("BaseModel", BaseModelSchema);
+export const BaseModel = mongoose.model<any>("BaseModel", BaseModelSchema);

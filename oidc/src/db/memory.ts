@@ -1,7 +1,8 @@
 export const accounts = new Map();
+
 accounts.set("sample", {
-  username: "sample",
+  username: "ebrahimmfadae",
   password: "pass",
-  email: "metalicn20@gmail.com",
+  email: "ebrahimmfadae@gmail.com",
   emailVerified: false,
 });
