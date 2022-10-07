@@ -32,13 +32,13 @@ export const authenticate: Middleware = async (ctx, next) => {
 
 export const authorize =
   (...scopes: string[]): Middleware =>
-  async (ctx, next) => {
-    if (
-      ctx.state.session &&
-      scopes.every((scope) => ctx.state.session.scope.includes(scope))
-    ) {
-      await next();
-    } else {
-      ctx.throw(401);
-    }
-  };
+    async (ctx, next) => {
+      if (
+        ctx.state.session &&
+        scopes.every((scope) => ctx.state.session.scope.includes(scope))
+      ) {
+        await next();
+      } else {
+        ctx.throw(401);
+      }
+    };

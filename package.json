@@ -26,7 +26,7 @@
     "koa-static": "^5.0.0",
     "mongoose": "^6.0.5",
     "node-fetch": "^2.6.1",
-    "oidc-provider": "^7.6.0",
+    "oidc-provider": "^7.12.0",
     "ts-node": "^10.2.0",
     "typescript": "^4.3.5"
   },

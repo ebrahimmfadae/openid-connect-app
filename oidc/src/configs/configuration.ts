@@ -3,27 +3,27 @@ import { MongoDbAdapter } from "../adapters/mongodb";
 import * as accountService from "../services/account-persist.service";
 
 export const configuration: Configuration = {
+  scopes: ["api:read", "api:write", "offline_access"],
   adapter: MongoDbAdapter,
-  clientBasedCORS(ctx, origin, client) {
+  clientBasedCORS() {
     return true;
   },
-  async findAccount(ctx, id) {
+  async findAccount(_, id) {
     const account = await accountService.get(id);
     return (
       account && {
         accountId: id,
-        async claims(use /* id_token, userinfo */, scope, claims) {
-          // console.log(`claims(${use}, ${scope}, ${JSON.stringify(claims)})`);
+        async claims(_, scope) {
           if (!scope) return undefined;
           const openid = { sub: id };
           const email = {
             email: account.email,
             email_verified: account.emailVerified,
           };
-          return {
-            ...(scope.includes("openid") && openid),
-            ...(scope.includes("email") && email),
-          };
+          const accountInfo = {}
+          if (scope.includes("openid")) Object.assign(accountInfo, openid)
+          if (scope.includes("email")) Object.assign(accountInfo, email)
+          return accountInfo
         },
       }
     );
@@ -39,7 +39,7 @@ export const configuration: Configuration = {
         "refresh_token",
         "client_credentials",
       ],
-      scope: "openid email profile phone address offline_access",
+      scope: "openid email profile phone address offline_access api:read",
     },
     {
       client_id: "api",
@@ -69,31 +69,30 @@ export const configuration: Configuration = {
       "updated_at",
       "website",
       "zoneinfo",
-    ],
+    ]
   },
   features: {
     clientCredentials: { enabled: true },
     introspection: {
       enabled: true,
       allowedPolicy(ctx, client, token) {
-        if (
-          client.introspectionEndpointAuthMethod === "none" &&
-          token.clientId !== ctx.oidc.client?.clientId
-        ) {
-          return false;
-        }
-        return true;
+        return client.introspectionEndpointAuthMethod !== "none" ||
+          token.clientId === ctx.oidc.client?.clientId
       },
     },
     revocation: { enabled: true },
     devInteractions: { enabled: false },
     resourceIndicators: {
+      enabled: true,
+      useGrantedResource() {
+        return true
+      },
       defaultResource(ctx) {
         return Array.isArray(ctx.oidc.params?.resource)
           ? ctx.oidc.params?.resource[0]
           : ctx.oidc.params?.resource;
       },
-      getResourceServerInfo(ctx, resourceIndicator, client) {
+      getResourceServerInfo() {
         return {
           scope: "api:read offline_access",
         };
@@ -119,7 +118,7 @@ export const configuration: Configuration = {
     keys: ["subzero"],
   },
   ttl: {
-    AccessToken: function AccessTokenTTL(ctx, token, client) {
+    AccessToken: function AccessTokenTTL(_, token) {
       if (token.resourceServer) {
         return token.resourceServer.accessTokenTTL || 60 * 60; // 1 hour in seconds
       }
@@ -127,13 +126,13 @@ export const configuration: Configuration = {
     },
     AuthorizationCode: 600 /* 10 minutes in seconds */,
     BackchannelAuthenticationRequest:
-      function BackchannelAuthenticationRequestTTL(ctx, request, client) {
+      function BackchannelAuthenticationRequestTTL(ctx) {
         if (ctx && ctx.oidc && ctx.oidc.params?.requested_expiry) {
           return Math.min(10 * 60, ctx.oidc.params?.requested_expiry as number); // 10 minutes in seconds or requested_expiry, whichever is shorter
         }
         return 10 * 60; // 10 minutes in seconds
       },
-    ClientCredentials: function ClientCredentialsTTL(ctx, token, client) {
+    ClientCredentials: function ClientCredentialsTTL(token) {
       if (token.resourceServer) {
         return token.resourceServer.accessTokenTTL || 10 * 60; // 10 minutes in seconds
       }
