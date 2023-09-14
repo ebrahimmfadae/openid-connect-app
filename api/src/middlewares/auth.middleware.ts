@@ -9,9 +9,7 @@ export const authenticate: Middleware = async (ctx, next) => {
 	const url = `${process.env.OIDC_ISSUER}/token/introspection`
 	const response = await fetch(url, {
 		method: 'POST',
-		headers: {
-			['Content-Type']: 'application/x-www-form-urlencoded',
-		},
+		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 		body: body,
 	})
 	if (response.status !== 200) ctx.throw(401)

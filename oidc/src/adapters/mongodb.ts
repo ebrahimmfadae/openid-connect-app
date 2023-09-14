@@ -33,9 +33,7 @@ export class MongoDbAdapter {
 	 */
 	async upsert(id: string, payload: any, expiresIn: number): Promise<any> {
 		return await BaseModel.updateOne(
-			{
-				key: id,
-			},
+			{ key: id },
 			{ payload, expiresAt: new Date(Date.now() + expiresIn * 1000) },
 			{ upsert: true },
 		)
@@ -52,10 +50,7 @@ export class MongoDbAdapter {
 	 *
 	 */
 	async find(id: string): Promise<any> {
-		const doc: any = await BaseModel.findOne({
-			key: id,
-			'payload.kind': this.model,
-		})
+		const doc = await BaseModel.findOne({ key: id, 'payload.kind': this.model })
 		return doc?.payload
 	}
 
@@ -71,7 +66,7 @@ export class MongoDbAdapter {
 	 *
 	 */
 	async findByUserCode(userCode: string): Promise<any> {
-		const doc: any = await BaseModel.findOne({
+		const doc = await BaseModel.findOne({
 			'payload.kind': 'DeviceCode',
 			'payload.userCode': userCode,
 		})
@@ -89,10 +84,7 @@ export class MongoDbAdapter {
 	 *
 	 */
 	async findByUid(uid: string): Promise<any> {
-		const doc: any = await BaseModel.findOne({
-			'payload.kind': 'Session',
-			'payload.uid': uid,
-		})
+		const doc = await BaseModel.findOne({ 'payload.kind': 'Session', 'payload.uid': uid })
 		return doc?.payload
 	}
 
@@ -108,11 +100,8 @@ export class MongoDbAdapter {
 	 *
 	 */
 	async consume(id: string): Promise<any> {
-		return BaseModel.updateOne(
-			{
-				key: id,
-				'payload.kind': this.model,
-			},
+		return await BaseModel.updateOne(
+			{ key: id, 'payload.kind': this.model },
 			{ consumed: Date.now() / 1000 },
 		)
 	}
@@ -128,10 +117,7 @@ export class MongoDbAdapter {
 	 *
 	 */
 	async destroy(id: string): Promise<any> {
-		return BaseModel.deleteOne({
-			key: id,
-			'payload.kind': this.model,
-		})
+		return await BaseModel.deleteOne({ key: id, 'payload.kind': this.model })
 	}
 
 	/**
@@ -145,8 +131,6 @@ export class MongoDbAdapter {
 	 *
 	 */
 	async revokeByGrantId(grantId: string): Promise<any> {
-		return BaseModel.deleteMany({
-			'payload.grantId': grantId,
-		})
+		return await BaseModel.deleteMany({ 'payload.grantId': grantId })
 	}
 }

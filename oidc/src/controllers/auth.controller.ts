@@ -17,11 +17,7 @@ export default (oidc: Provider): { [key: string]: Middleware } => ({
 			const account = await accountService.get(ctx.request.body.username)
 			let result: any
 			if (account?.password === ctx.request.body.password) {
-				result = {
-					login: {
-						accountId: ctx.request.body.username,
-					},
-				}
+				result = { login: { accountId: ctx.request.body.username } }
 			} else {
 				result = {
 					error: 'access_denied',
