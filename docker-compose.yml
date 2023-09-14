@@ -5,7 +5,7 @@ services:
     working_dir: /app
     environment:
       - PORT=80
-      - OIDC_ISSUER=$INTERNAL_OIDC_ISSUER
+      - OIDC_ISSUER=$PUBLIC_OIDC_ISSUER
       - MONGODB_URI=$MONGODB_URI
     ports:
       - '3000:80'
