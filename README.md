@@ -38,13 +38,13 @@ $ node -v
 v18.17.1
 
 $ yarn -v
-v1.22.19
+v3.6.3
 
-$ docker
+$ docker --version
 Docker version 20.10.7, build f0df350
 
-$ docker-compose version
-Docker Compose version v2.11.2
+$ docker compose version
+Docker Compose version v2.15.1
 ```
 
 ## Run & Stop
