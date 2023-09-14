@@ -21,17 +21,17 @@
 
 ## Article reference
 
-The article associated to this repository is written in 4 parts plus an introduction.
+This repository is associated with an article series that provides a step-by-step guide on implementing OIDC ([OpenID Connect 1.0](https://openid.net/specs/openid-connect-core-1_0.html)) with Node.js, TypeScript, and MongoDB:
 
--   Series: [How to Implement OpenID with Node.js & Typescript & MongoDB](https://dev.to/ebrahimmfadae/setup-openid-with-nodejs-and-mongodb-451j)
--   Part I: [Develop Simple OpenID Authorization Server with Node.js & Typescript](https://dev.to/ebrahimmfadae/develop-an-openid-server-with-nodejs-typescript-9n1)
--   Part II: [Persist OpenID Server Data on MongoDB with Node.js](https://dev.to/ebrahimmfadae/persist-openid-server-data-with-mongodb-5f95)
--   Part III: [Add Resource Server Authorization to OpenID with Node.js](https://dev.to/ebrahimmfadae/add-a-resource-server-to-an-openid-provider-noo)
--   Part IV: [Set OpenID Security Configs in Node.js](https://dev.to/ebrahimmfadae/openid-security-configuration-4nn8)
+-   [Series: Implementing OpenID with Node.js, TypeScript, and MongoDB - A Step-by-Step Guide](https://dev.to/ebrahimmfadae/setup-openid-with-nodejs-and-mongodb-451j)
+-   [Part I: Developing Simple OpenID Authorization Server with Node.js & Typescript](https://dev.to/ebrahimmfadae/develop-an-openid-server-with-nodejs-typescript-9n1)
+-   [Part II: Persisting OpenID Server Data on MongoDB with Node.js](https://dev.to/ebrahimmfadae/persist-openid-server-data-with-mongodb-5f95)
+-   [Part III: Adding Resource Server Authorization to OpenID with Node.js](https://dev.to/ebrahimmfadae/add-a-resource-server-to-an-openid-provider-noo)
+-   [Part IV: Configuring OpenID Security Settings in Node.js](https://dev.to/ebrahimmfadae/openid-security-configuration-4nn8)
 
 ## Project requirements
 
-The project is developed and tested in this environment.
+The project has been developed and tested in the following environment:
 
 ```
 $ node -v
@@ -47,30 +47,28 @@ $ docker compose version
 Docker Compose version v2.15.1
 ```
 
-## Run & Stop
+## Getting started
 
-Install dependencies
+**Install dependencies** Open a terminal and run the following command to install the project dependencies:
 
 ```
 $ yarn install
 ```
 
-_Note: We can move the `yarn install` step to the container, but installing the dependencies inside the container when we have no caching bothers me! Especially in the development phase._
-
-Run containers
+**Run containers** Start the project containers by running the command:
 
 ```
-$ yarn docker-compose:up
+$ yarn compose:up
 ```
 
 You can see the front end by navigating to [http://localhost:3005](http://localhost:3005) with your browser.
 
-Stop containers
+**Stop containers** When you're done using the application, stop the containers by running the command:
 
 ```
-$ yarn docker-compose:down
+$ yarn compose:down
 ```
 
-## How to Contribute
+## How to contribute
 
-To suggest code change, Open an issue or create a pull request.
+If you have any suggestions or want to propose code changes, you can open an issue or create a pull request with your proposed changes. Feel free to make any further adjustments or additions to the README to suit your project's specific requirements and conventions.
