@@ -8,7 +8,7 @@ services:
       - OIDC_ISSUER=$OIDC_ISSUER
       - MONGODB_URI=$MONGODB_URI
     ports:
-      - "3000:80"
+      - '3000:80'
     volumes:
       - .:/app
   api:
@@ -21,7 +21,7 @@ services:
       - CLIENT_ID=api
       - CLIENT_SECRET=night-wolf
     ports:
-      - "3006:80"
+      - '3006:80'
     volumes:
       - .:/app
   app:
@@ -36,13 +36,13 @@ services:
       - CLIENT_ID=app
       - CLIENT_SECRET=scorpion
     ports:
-      - "3005:80"
+      - '3005:80'
     volumes:
       - .:/app
   mongo:
     image: mongo:5.0
     ports:
-      - "27017:27017"
+      - '27017:27017'
     volumes:
       - mongo-data:/data/db
     healthcheck:

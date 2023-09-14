@@ -23,11 +23,11 @@
 
 The article associated to this repository is written in 4 parts plus an introduction.
 
-- Series: [How to Implement OpenID with Node.js & Typescript & MongoDB](https://dev.to/ebrahimmfadae/setup-openid-with-nodejs-and-mongodb-451j)
-- Part I: [Develop Simple OpenID Authorization Server with Node.js & Typescript](https://dev.to/ebrahimmfadae/develop-an-openid-server-with-nodejs-typescript-9n1)
-- Part II: [Persist OpenID Server Data on MongoDB with Node.js](https://dev.to/ebrahimmfadae/persist-openid-server-data-with-mongodb-5f95)
-- Part III: [Add Resource Server Authorization to OpenID with Node.js](https://dev.to/ebrahimmfadae/add-a-resource-server-to-an-openid-provider-noo)
-- Part IV: [Set OpenID Security Configs in Node.js](https://dev.to/ebrahimmfadae/openid-security-configuration-4nn8)
+-   Series: [How to Implement OpenID with Node.js & Typescript & MongoDB](https://dev.to/ebrahimmfadae/setup-openid-with-nodejs-and-mongodb-451j)
+-   Part I: [Develop Simple OpenID Authorization Server with Node.js & Typescript](https://dev.to/ebrahimmfadae/develop-an-openid-server-with-nodejs-typescript-9n1)
+-   Part II: [Persist OpenID Server Data on MongoDB with Node.js](https://dev.to/ebrahimmfadae/persist-openid-server-data-with-mongodb-5f95)
+-   Part III: [Add Resource Server Authorization to OpenID with Node.js](https://dev.to/ebrahimmfadae/add-a-resource-server-to-an-openid-provider-noo)
+-   Part IV: [Set OpenID Security Configs in Node.js](https://dev.to/ebrahimmfadae/openid-security-configuration-4nn8)
 
 ## Project requirements
 

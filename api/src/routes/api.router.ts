@@ -1,13 +1,13 @@
-import Router from "koa-router";
-import apiController from "../controllers/api.controller";
-import { authenticate, authorize } from "../middlewares/auth.middleware";
+import Router from 'koa-router'
+import apiController from '../controllers/api.controller'
+import { authenticate, authorize } from '../middlewares/auth.middleware'
 
 export default () => {
-  const router = new Router();
+	const router = new Router()
 
-  const { pi } = apiController();
+	const { pi } = apiController()
 
-  router.get("/pi", authenticate, authorize("api:read"), pi);
+	router.get('/pi', authenticate, authorize('api:read'), pi)
 
-  return router;
-};
+	return router
+}
