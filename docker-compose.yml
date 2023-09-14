@@ -1,6 +1,6 @@
 services:
   oidc:
-    image: node:16-alpine
+    image: node:18.17-alpine
     command: yarn start:oidc
     working_dir: /app
     environment:
@@ -12,7 +12,7 @@ services:
     volumes:
       - .:/app
   api:
-    image: node:16-alpine
+    image: node:18.17-alpine
     command: yarn start:api
     working_dir: /app
     environment:
@@ -25,7 +25,7 @@ services:
     volumes:
       - .:/app
   app:
-    image: node:16-alpine
+    image: node:18.17-alpine
     command: yarn start:app
     working_dir: /app
     environment:
@@ -40,7 +40,7 @@ services:
     volumes:
       - .:/app
   mongo:
-    image: mongo:4.4.7
+    image: mongo:5.0
     ports:
       - "27017:27017"
     volumes:

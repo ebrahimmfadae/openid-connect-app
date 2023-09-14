@@ -35,7 +35,7 @@ The project is developed and tested in this environment.
 
 ```
 $ node -v
-v16.17.0
+v18.17.1
 
 $ yarn -v
 v1.22.19
