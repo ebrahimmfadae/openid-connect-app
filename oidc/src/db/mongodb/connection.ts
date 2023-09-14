@@ -1,10 +1,10 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 export default async () => {
-  const URI = process.env.MONGODB_URI ?? "";
-  try {
-    return await mongoose.connect(URI, {});
-  } catch (error) {
-    console.error(error);
-  }
-};
+	const URI = process.env.MONGODB_URI ?? ''
+	try {
+		return await mongoose.connect(URI, {})
+	} catch (error) {
+		console.error(error)
+	}
+}

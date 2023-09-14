@@ -1,6 +1,6 @@
 services:
   oidc:
-    image: node:16-alpine
+    image: node:18.17-alpine
     command: yarn start:oidc
     working_dir: /app
     environment:
@@ -8,11 +8,11 @@ services:
       - OIDC_ISSUER=$OIDC_ISSUER
       - MONGODB_URI=$MONGODB_URI
     ports:
-      - "3000:80"
+      - '3000:80'
     volumes:
       - .:/app
   api:
-    image: node:16-alpine
+    image: node:18.17-alpine
     command: yarn start:api
     working_dir: /app
     environment:
@@ -21,11 +21,11 @@ services:
       - CLIENT_ID=api
       - CLIENT_SECRET=night-wolf
     ports:
-      - "3006:80"
+      - '3006:80'
     volumes:
       - .:/app
   app:
-    image: node:16-alpine
+    image: node:18.17-alpine
     command: yarn start:app
     working_dir: /app
     environment:
@@ -36,13 +36,13 @@ services:
       - CLIENT_ID=app
       - CLIENT_SECRET=scorpion
     ports:
-      - "3005:80"
+      - '3005:80'
     volumes:
       - .:/app
   mongo:
-    image: mongo:4.4.7
+    image: mongo:5.0
     ports:
-      - "27017:27017"
+      - '27017:27017'
     volumes:
       - mongo-data:/data/db
     healthcheck:
